@@ -1,0 +1,17 @@
+<div class="flex-wrap">
+    <emails-editor
+            class="component-container"
+            [emails]="emails"
+            [placeholder]="'add more people...'"
+            (addEmails)="addEmails($event)"
+            (removeEmail)="removeEmail($event)"
+    >
+        <span emails-editor-title>Share <b>Board name</b> with other</span>
+    </emails-editor>
+    <div class="btn-container">
+        <div class="btn-group">
+            <div class="btn" (click)="addRandomEmail()">Add email</div>
+            <div class="btn" (click)="showEmailCnt()">Get email count</div>
+        </div>
+    </div>
+</div>

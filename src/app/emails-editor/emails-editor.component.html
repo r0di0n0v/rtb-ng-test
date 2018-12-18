@@ -1,0 +1,30 @@
+<div class="component-container">
+  <div class="title flex-block">
+    <ng-content select="[emails-editor-title]"></ng-content>
+  </div>
+  <div class="emails-container flex-block">
+    <div
+      #emailsArea
+      class="emails-area"
+      (window:resize)="onResize(emailsArea.getBoundingClientRect().width)"
+    >
+      <div *ngFor="let email of emails; let i = index" class="email">
+        <div
+          class="email-text"
+          [class.error]="!emailValidationStates[i]"
+          [title]="email"
+          [style.maxWidth]="(emailTextMaxWidth || (emailsArea.getBoundingClientRect().width - 80))+'px'"
+        >{{email}}</div>
+        <div class="email-rm-btn" (click)="rmEmail(i)"></div>
+      </div>
+      <textarea
+          #elem
+          type="text"
+          [placeholder]="placeholder"
+          (blur)="addEmail($event, elem)"
+          (paste)="onPaste($event)"
+          (keydown)="onKeydown($event, elem)"
+      ></textarea>
+    </div>
+  </div>
+</div>
